@@ -44,13 +44,13 @@ In this short note I propose and demonstrate a solution to these two problems. R
 Let's look at the basic \code{LoadandCite} syntax. Below, we'll see how to use it in reproducible LaTeX documents. The main argument that \code{LoadandCite} takes is a character vector of package names. For example, to load the \CRANpkg{car} \citep{R-car} and \CRANpkg{knitr} packages create the following character vector:
 
 \begin{example}
-  Packages <- c('car', 'knitr')
+  Packages <- c("car", "knitr")
 \end{example}
 
 \noindent We can now simply add this vector object to \code{LoadandCite}'s \code{pkgs} argument. We can also specify the name of the BibTeX file that we want to create and save the citations to with the \code{file} argument.\footnote{If no file is specified, then the packages are only loaded.} Let's use the file name \file{Example.bib}:
 
 \begin{example}
-  repmis::LoadandCite(pkgs = Packages, file = 'Example.bib')
+  repmis::LoadandCite(pkgs = Packages, file = "Example.bib")
 \end{example}
 
 \noindent The two packages will be loaded and a BibTeX file with citation information for the loaded versions created in the working directory. A citation for the running version of R will also be included in this file. \strong{Note} it is important to use a file name that is different from the one you use for non-R package citations. Otherwise you will accidentally overwrite your other citations.
@@ -64,14 +64,14 @@ The \emph{Journal of Statistical Software}, a popular journal for papers that ci
 If we want to have the packages installed as well as loaded and cited, we can set the argument \code{install = TRUE}. This will install the most recent version of the packages from the repository specified in the \code{repos} argument.\footnote{\code{repos}' default is the user's default.} If we want to install specific package versions, we can include a character vector of package version numbers to have \code{LoadandCite} install from CRAN. The order of the package versions must match the order of the packages listed in the \code{pkgs} argument. For example, to install \CRANpkg{car} version 2.0-17 and \CRANpkg{knitr} version 1.1 use:
 
 \begin{example}
-  Vers <- c('2.0-17', '1.1')
+  Vers <- c("2.0-17", "1.1")
 
   repmis::LoadandCite(pkgs = Packages, install = TRUE,
-                      versions = Vers, file = 'Example.bib')
+                      versions = Vers, file = "Example.bib")
 \end{example}
 
 
-\noindent You should avoid using old package versions in active research projects as they may contain bugs that were addressed in subsequent updates. It is better to specify the versions only in documents you are making available for replication.\footnote{If \code{install = FALSE} (the default) then specific package versions will not be installed, i.e. \code{LoadandCite} will ignore any values in the \code{versions} argument.} Likewise, you probably only want to set \code{install = TRUE} in a file intended for replication. It will be unnecessarily and time consuming to install the packages every time you run your code.
+\noindent \textbf{Warning:} you should avoid using old package versions in active research projects as they may contain bugs that were addressed in subsequent updates. It is better to specify the versions only in documents you are making available for replication.\footnote{If \code{install = FALSE} (the default) then specific package versions will not be installed, i.e. \code{LoadandCite} will ignore any values in the \code{versions} argument.} Likewise, you probably only want to set \code{install = TRUE} in a file intended for replication. It will be unnecessarily and time consuming to install the packages every time you run your code.
 
 If you are reproducing a piece of research and installing old package versions, it can be a good idea to install these into a separate library from the one(s) you normally use. You can specify what library to have \code{LoadandCite} install the packages into with the \code{lib} argument.\footnote{If needed, remember to then add this library path to R with \code{.libPath}.}
 
@@ -83,8 +83,8 @@ Possibly the best way to use \pkg{LoadandCite} with your research is to place it
 
 \begin{example}
 \textless{\textless}include=FALSE\textgreater{\textgreater}=
-  Packages <- c('car', 'knitr', 'repmis')
-  repmis::LoadandCite(pkgs = Packages, file = 'Example.bib')
+  Packages <- c("car", "knitr", "repmis")
+  repmis::LoadandCite(pkgs = Packages, file = "Example.bib")
 @
 \end{example}
 

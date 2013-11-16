@@ -2,7 +2,7 @@
 
 #### Comments in response to reviewer concerns
 
-- `LoadandCite` no longer 
+- `LoadandCite` now uses spidering. It only loads packages that aren't already loaded and installs packages/package versions that are not already installed. Users can specify which library to check to see if a package/version is already installed in .libPaths(). A message is also returned informing the user of which packages/versions are already installed. 
 
 - One of the reviewers suggested a work flow that I had not accommodated in the original version: placing `LoadandCite` at the end of a reproducible research document to cite all of the non-base packages that had already been loaded in the current session. I have added this capability. I think, however, that if `LoadandCite` is being used in a `knitr` type document this is probably not the best way to take advantage of the commands capabilities FINISH
 
@@ -12,7 +12,10 @@
 
 - As suggested by both the reviewers, I have expanded the capabilities for installing packages from non-CRAN sources. NEED TO DO.
 
-- It was mentioned that the function only uses the US CRAN mirror. This is incorrect. The original version of `LoadandCite` always used the CRAN set by the user by default. It also allowed the user to specify a particular mirror with the `repo` argument. Only if the user had not set the mirror at all did it revert to the US mirror. 
+- It was mentioned that `LoadandCite` only uses the US CRAN mirror. This is incorrect for current package versions. `LoadandCite` always used the CRAN set by the user by default. It also allowed the user to specify a particular mirror with the `repo` argument. Only if the user had not set the mirror at all did it revert to the US mirror. 
+
+- It is true that installing old packages through `LoadandCite` did use the main CRAN archive. The new version now allows uses to choose which archive to install from for both current and old package versions.
+
 
 - Unit tests are set as dontrun because CRAN doesn't allow packages to be installed in examples. I did create an example that where a package is only loaded and cited. CHECK
 
